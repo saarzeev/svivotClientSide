@@ -58,8 +58,8 @@
                         <span ng-show="signupForm.email.$error.email">Invalid email address</span>
                         </span>
                     
-                        <input type="submit" value="Sign Up" ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||  
-                        myForm.email.$dirty && myForm.email.$invalid">
+                        <!-- <input type="button" value="Sign Up" ng-disabled="signupForm.$invalid" onclick="(function(){console.log('nu')});"> -->
+                        <input type="button" value="Sign Up" disabled>
                 </ul>                                                              
             </form>
             <script type="text/javascript" src="users.js"></script>

@@ -2156,6 +2156,14 @@ input, select, textarea {
 		text-decoration: none;
 		text-transform: uppercase;
 	}
+		input[type="button"]:disabled {
+			background: #dddddd !important;
+			color: darkgrey !important;
+		}
+		input[type="button"]:disabled:hover {
+			background: #dddddd !important;
+			color: darkgrey !important;
+		}
 
 		input[type="button"]:hover,
 		input[type="submit"]:hover,
