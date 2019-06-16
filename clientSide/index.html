@@ -11,8 +11,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-		<script src="./assets/js/App.js"></script>
+		<script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+
+		<script src="./assets/js/app.js"></script>
+		<script src="./assets/js/signupController.js"></script>
+		<script src="./assets/js/loginController.js"></script>
+		
 	</head>
 	<body class="index is-preload">
 		<div id="page-wrapper">
@@ -42,83 +48,24 @@
 									</li> -->
 								</ul>
 							</li>
-							<li><a href="#" class="button secondary">Log In</a></li>
-							<li><a href="#" class="button primary">Sign Up</a></li>
+							<li><a href="#!login" class="button secondary">Log In</a></li>
+							<li><a href="#!signup" class="button primary">Sign Up</a></li>
+							
 						</ul>
 					</nav>
 				</header>
-
+				
 			<!-- Banner -->
 				<section id="banner">
-
+					<div ng-view></div>
 					<!--
 						".inner" is set up as an inline-block so it automatically expands
 						in both directions to fit whatever's inside it. This means it won't
 						automatically wrap lines, so be sure to use line breaks where
 						appropriate (<br />).
 					-->
-					<div ng-controller="mainController">
-						<h1>nu kvar</h1>
-					</div>
-
-					<div id="LogIn" class="inner">
-						<!-- log in -->
-							<section style="color: azure;">
-								<form class="form-style-9" action="#" >
-									
-									
-										<input type="text" name="loginUserName" class="field-style field-split align-left" 
-										placeholder="User Name" />
-										<input type="password" name="loginPassword" class="field-style field-split align-right" 
-										placeholder="Password" />
-									
-										<input type="button" value="Log In" onclick="tryLogIn()" />
-
-									                                                            
-								</form>
-								<script type="text/javascript" src="users.js"></script>
-							</section>
-					</div>
-
-					<div id="SignUp" class="inner">
-						<!-- sign up -->
-						<section style="color: azure;">
-								<form class="form-style-9">
-									<ul>
-										
-											<input type="text" name="signupUserName" class="field-style field-split align-left" 
-											placeholder="User Name" />
-											<input type="password" name="signupPassword" class="field-style field-split align-right" 
-											placeholder="Password" />
-										
-
-										
-											<input type="text" name="firstName" class="field-style field-split align-left" 
-											placeholder="First Name" />
-											<input type="text" name="lastName" class="field-style field-split align-right" 
-											placeholder="Last Name" />
-										
-											<input type="text" name="city" class="field-style field-split align-right" 
-											placeholder="City" />
-
-											<input type="text" name="country" class="field-style field-split align-right" 
-											placeholder="Country" />
-										
-											<input type="email" name="email" class="field-style field-split align-right" 
-											placeholder="Email" />  
-											<input type="date" name="birthday" class="field-style field-split align-left" 
-											placeholder="Birthday" /> 
-										
-
-										
-											<input type="button" value="Sign Up" onclick="validateSignUpForm()" />
-										
-									</ul>                                                              
-								</form>
-								<script type="text/javascript" src="users.js"></script>
-						</section>
-					</div> 
-
+					
+					
 				</section>
 
 			<!-- Main -->
