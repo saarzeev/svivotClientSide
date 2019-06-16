@@ -7,11 +7,13 @@ angular.module("myApp")
     }
 
     $scope.validateUsername = function() {
-            var ans = signupForm.signupUserName >= 3;
-            ans = ans && signupForm.signupUserName <= 8;
+            // var ans = signupForm.$dirty
+            // ans = ans && signupForm.signupUserName.length <= 8;
 
             var regex = /^[a-zA-Z]*$/
-            return ans && regex.test(signupForm.signupUserName);
+            // return ans && regex.test(signupForm.signupUserName);
+            
+            return regex.test(signupForm.signupUserName);
     }
 
 });

@@ -1,75 +1,65 @@
 <div id="SignUp" class="inner">
     <!-- sign up -->
     <section style="color: azure;">
-            <form name="signupForm" class="form-style-9">
+            <form name="signupForm" class="form-style-9" novalidate>
                 <ul>
                     
-                        <input type="text" name="signupUserName" ng-model="signupUserName" class="field-style field-split align-left" 
-                        placeholder="User Name" required/>
+                        <input type="text" name="signupUserName"  ng-model="signupUserName" class="field-style field-split align-left" 
+                        placeholder="User Name" ng-maxlength="8" ng-minlength="3" ng-pattern="/^[a-zA-Z]*$/" required/>
 
-                        <span style="color:red" ng-show="validateUsername() || (signupForm.signupUserName.$dirty && signupForm.signupUserName.$invalid)">
-                            <span ng-show="signupForm.signupUserName.$error.required">Username is required.</span>
-                            <span ng-hide="validateUsername()">Username is shorter then 3 chars, longer than 8 chars, or contains non-letters.</span>
-                            </span>
-                            
-                            <!-- <span style="color:red" ng-show="signupForm.signupUserName.$dirty && signupForm.signupUserName.$invalid">
-                                <span ng-hide="validateUsername()">Username is shorter then 3 chars, longer than 8 chars, or contains non-letters.</span>
-                                </span> -->
+                        <span ng-show="signupForm.signupUserName.$touched">
+                            <span ng-show="signupForm.signupUserName.$error.minlength">Minimum username length is 3<br> </span>
+                            <span ng-show="signupForm.signupUserName.$error.maxlength">Maximum username length is 8<br> </span>
+                            <span ng-show="signupForm.signupUserName.$error.pattern">Username should consist of letters only </span>
+                            <span ng-show="signupForm.signupUserName.$error.required">A username is required</span>
+                        </span>
 
                         <input type="password" name="signupPassword" ng-model="signupPassword" class="field-style field-split align-right" 
-                        placeholder="Password" required />
+                        placeholder="Password" ng-maxlength="10" ng-minlength="5" ng-pattern="/(^\d+[a-zA-Z]+[a-zA-Z0-9]*$|^[a-zA-Z]+\d+[a-zA-Z0-9]*$)/" required />
+                        
+                        <span ng-show="signupForm.signupPassword.$touched">
+                            <span ng-show="signupForm.signupPassword.$error.minlength">Minimum password length is 5<br></span>
+                            <span ng-show="signupForm.signupPassword.$error.maxlength">Maximum password length is 10<br> </span>
+                            <span ng-show="signupForm.signupPassword.$error.pattern">Password must contain both letters and numbers </span>
+                            <span ng-show="signupForm.signupPassword.$error.required">A password is required</span>
+                        </span>
                     
                         <input type="text" name="firstName" ng-model="firstName" class="field-style field-split align-left" 
-                        placeholder="First Name" required />
+                        placeholder="First Name" ng-pattern="/^[a-zA-Z]*$/" required />
+
+                        <span ng-show="signupForm.firstName.$touched">
+                            <span ng-show="signupForm.firstName.$error.pattern">Names should consist of letters only </span>
+                            <span ng-show="signupForm.firstName.$error.required">First name is required</span>
+                        </span>
+
                         <input type="text" name="lastName" ng-model="lastName" class="field-style field-split align-right" 
-                        placeholder="Last Name" required />
+                        placeholder="Last Name" ng-pattern="/^[a-zA-Z]*$/" required />
+
+                        <span ng-show="signupForm.lastName.$touched">
+                            <span ng-show="signupForm.lastName.$error.pattern">Names should consist of letters only </span>
+                            <span ng-show="signupForm.lastName.$error.required">Last name is required</span>
+                        </span>
                     
                         <input type="text" name="city" ng-model="city" class="field-style field-split align-right" 
-                        placeholder="City" required/>
+                        placeholder="City" ng-pattern="/^([a-zA-Z]*(\s|$))*$/" required/>
+
+                        <span ng-show="signupForm.city.$touched">
+                            <span ng-show="signupForm.city.$error.pattern">City name should consist of letters and white spaces only </span>
+                            <span ng-show="signupForm.city.$error.required">A city is required</span>
+                        </span>
 
                         <input type="text" name="country" ng-model="country" class="field-style field-split align-right" 
                         placeholder="Country" required/>
                     
                         <input type="email" name="email" ng-model="email" class="field-style field-split align-right" 
-                        placeholder="Email"  required/>  
-                        <input type="date" name="birthday" ng-model="birthday" class="field-style field-split align-left" 
-                        placeholder="Birthday" required /> 
+                        placeholder="Email" required/> 
+                        <span ng-show="signupForm.city.$touched">
+                            <span ng-show="signupForm.email.$error.required">Email is required</span>
+                        <span ng-show="signupForm.email.$error.email">Invalid email address</span>
+                        </span>
                     
-                        <input type="button" value="Sign Up" ng-click="validateSignUpForm()" />
-
-                        
-
-                        <p>Username:<br>
-                        <input type="text" name="user" ng-model="user" required>
-                        <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
-                        <span ng-show="myForm.user.$error.required">Username is required.</span>
-                        </span>
-                        </p>
-
-                        <p>Email:<br>
-                        <input type="email" name="email" ng-model="email" required>
-                        <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
-                        <span ng-show="myForm.email.$error.required">Email is required.</span>
-                        <span ng-show="myForm.email.$error.email">Invalid email address.</span>
-                        </span>
-                        </p>
-
-                        <p>
-                        <input type="submit"
-                        ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||  
+                        <input type="submit" value="Sign Up" ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||  
                         myForm.email.$dirty && myForm.email.$invalid">
-                        </p>
-
-                        </form>
-
-                        <script>
-                        var app = angular.module('myApp', []);
-                        app.controller('validateCtrl', function($scope) {
-                            $scope.user = 'John Doe';
-                            $scope.email = 'john.doe@gmail.com';
-                        });
-                        </script>
-
                 </ul>                                                              
             </form>
             <script type="text/javascript" src="users.js"></script>
