@@ -1,22 +1,17 @@
-<div ng-controller="loginController">
-    <h1>nu kvar</h1>
-</div>
-
 <div id="LogIn" class="inner">
     <!-- log in -->
         <section style="color: azure;">
-            <form class="form-style-9" action="#" >
+            <form name ="loginForm" class="form-style-9" action="#"  qn:validate="errors">
                 
                 
-                    <input type="text" name="loginUserName" class="field-style field-split align-left" 
+                    <input type="text" ng-model="loginUserName" name="loginUserName" class="field-style field-split align-left" 
                     placeholder="User Name" />
-                    <input type="password" name="loginPassword" class="field-style field-split align-right" 
+                    <input type="password" ng-model="loginPassword" name="loginPassword" class="field-style field-split align-right" 
                     placeholder="Password" />
-                
-                    <input type="button" value="Log In" ng-click="tryLogIn()" />
-
+                    <span ng:show="loginForm.$serverError.badParams.$invalid"> {{loginForm.$serverError.badParams.message}} <br> </span>                
+                    <input type="button" value="Log In" ng-click="tryLogIn()"/>
+                    
                                                                             
             </form>
-            <script type="text/javascript" src="users.js"></script>
         </section>
 </div>
