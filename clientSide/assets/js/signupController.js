@@ -2,25 +2,9 @@
 // signup controller
 angular.module("myApp")
 .controller("signupController", function ($scope, $http, $location) {
-    // $scope.registrationForm = {
-    //     username: "",
-    //     psw: "",
-    //     qa:[{question: 'What is your mothers maiden name?', answer: ''}, {question: 'What is your hometown?', answer: ''}],
-    //     email: "",
-    //     city: "",
-    //     country: "",
-    //     firstName: "",
-    //     lastName: "",
-    //     categories: $scope.categories
-    // };
 
     $scope.countries = ['Australia', 'Bolivia', 'China', 'Denemark', 'Israel', 'Latvia', 'Monaco', 'August', 'Norway', 'Panama', 'Switzerland', 'USA'];
     $scope.countries.sort();
-
-    // $scope.categories = ['Food', 'Shopping', 'Museums', 'Churches'];
-    // $scope.categories.sort();
-
-    
 
     $scope.isSelectionInvalid = function(registrationForm) {
         if(registrationForm.country == ""){
