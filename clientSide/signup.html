@@ -1,11 +1,11 @@
-<div id="SignUp" class="inner">
+<div id="SignUp" class="inner" ng-controller="signupController">
     <!-- sign up -->
     <section style="color: azure;">
-            <form name="signupForm" class="form-style-9" novalidate>
+            <form name="signupForm" class="form-style-9" novalidate ng-submit="submitSignupForm()">
                 <ul>
                     
-                        <input type="text" name="signupUserName"  ng-model="signupUserName" class="field-style field-split align-left" 
-                        placeholder="User Name" ng-maxlength="8" ng-minlength="3" ng-pattern="/^[a-zA-Z]*$/" required/>
+                        <input type="text" name="signupUserName" class="field-style field-split align-left" 
+                        placeholder="User Name" ng-maxlength="8" ng-minlength="3" ng-pattern="/^[a-zA-Z]*$/" ng-model='registrationForm.username' required/>
 
                         <span ng-show="signupForm.signupUserName.$touched">
                             <span ng-show="signupForm.signupUserName.$error.minlength">Minimum username length is 3<br> </span>
@@ -14,7 +14,7 @@
                             <span ng-show="signupForm.signupUserName.$error.required">A username is required</span>
                         </span>
 
-                        <input type="password" name="signupPassword" ng-model="signupPassword" class="field-style field-split align-right" 
+                        <input type="password" name="signupPassword" ng-model="registrationForm.psw" class="field-style field-split align-right" 
                         placeholder="Password" ng-maxlength="10" ng-minlength="5" ng-pattern="/(^\d+[a-zA-Z]+[a-zA-Z0-9]*$|^[a-zA-Z]+\d+[a-zA-Z0-9]*$)/" required />
                         
                         <span ng-show="signupForm.signupPassword.$touched">
@@ -24,7 +24,7 @@
                             <span ng-show="signupForm.signupPassword.$error.required">A password is required</span>
                         </span>
                     
-                        <input type="text" name="firstName" ng-model="firstName" class="field-style field-split align-left" 
+                        <input type="text" name="firstName" ng-model="registrationForm.firstName" class="field-style field-split align-left" 
                         placeholder="First Name" ng-pattern="/^[a-zA-Z]*$/" required />
 
                         <span ng-show="signupForm.firstName.$touched">
@@ -32,7 +32,7 @@
                             <span ng-show="signupForm.firstName.$error.required">First name is required</span>
                         </span>
 
-                        <input type="text" name="lastName" ng-model="lastName" class="field-style field-split align-right" 
+                        <input type="text" name="lastName" ng-model="registrationForm.lastName" class="field-style field-split align-right" 
                         placeholder="Last Name" ng-pattern="/^[a-zA-Z]*$/" required />
 
                         <span ng-show="signupForm.lastName.$touched">
@@ -40,18 +40,18 @@
                             <span ng-show="signupForm.lastName.$error.required">Last name is required</span>
                         </span>
                     
-                        <input type="text" name="city" ng-model="city" class="field-style field-split align-right" 
+                        <input type="text" name="city" ng-model="registrationForm.city" class="field-style field-split align-right" 
                         placeholder="City" ng-pattern="/^([a-zA-Z]*(\s|$))*$/" required/>
 
                         <span ng-show="signupForm.city.$touched">
-                            <span ng-show="signupForm.city.$error.pattern">City name should consist of letters and white spaces only </span>
+                            <span ng-show="signupForm.city.$error.pattern">City name should consist of letters and white spaces only</span>
                             <span ng-show="signupForm.city.$error.required">A city is required</span>
                         </span>
 
-                        <input type="text" name="country" ng-model="country" class="field-style field-split align-right" 
+                        <input type="text" name="country" ng-model="registrationForm.country" class="field-style field-split align-right" 
                         placeholder="Country" required/>
                     
-                        <input type="email" name="email" ng-model="email" class="field-style field-split align-right" 
+                        <input type="email" name="email" ng-model="registrationForm.email" class="field-style field-split align-right" 
                         placeholder="Email" required/> 
                         <span ng-show="signupForm.city.$touched">
                             <span ng-show="signupForm.email.$error.required">Email is required</span>
@@ -59,7 +59,7 @@
                         </span>
                     
                         <!-- <input type="button" value="Sign Up" ng-disabled="signupForm.$invalid" onclick="(function(){console.log('nu')});"> -->
-                        <input type="button" value="Sign Up" disabled>
+                        <input type="submit" value="Sign Up" id="submit" ng-disabled="signupForm.$invalid">
                 </ul>                                                              
             </form>
             <script type="text/javascript" src="users.js"></script>
