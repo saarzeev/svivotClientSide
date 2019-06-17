@@ -25,10 +25,10 @@
 
 			<!-- Header -->
 				<header id="header" class="alt">
-					<h1 id="logo"><a href="index.html">Hello <span ng-init="loggedInUsername='Guest'" ng-bind="loggedInUsername"></span></a></h1>
+					<h1 id="logo">Hello <span ng-init="loggedInUsername = 'Guest'; isLoggedIn = false" ng-bind="loggedInUsername"></span></h1>
 					<nav id="nav">
 						<ul>
-							<li class="current"><a href="index.html">Welcome</a></li>
+							<li class="current"><a href="#!/">Welcome</a></li>
 							<li class="submenu">
 								<a href="#">Navigate</a>
 								<ul>
@@ -48,8 +48,8 @@
 									</li> -->
 								</ul>
 							</li>
-							<li><a href="#!login" class="button secondary">Log In</a></li>
-							<li><a href="#!signup" class="button primary">Sign Up</a></li>
+							<li><a href="#!login" class="button secondary" ng-hide="isLoggedIn">Log In</a></li>
+							<li><a href="#!signup" class="button primary" ng-hide="isLoggedIn">Sign Up</a></li>
 							
 						</ul>
 					</nav>

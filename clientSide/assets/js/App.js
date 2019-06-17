@@ -1,5 +1,8 @@
 var myApp = angular.module('myApp', ["ngRoute"]);
 
+myApp.init = function(){
+
+}
 // config routes
 myApp.config(function($routeProvider)  {
     $routeProvider
@@ -28,10 +31,9 @@ myApp.config(function($routeProvider)  {
         .otherwise({ redirectTo: '/' });
 });
 
-myApp.controller("mainController", function($scope){
+myApp.controller("mainController", function($scope, $rootScope){
     //  if(!$scope.loggedInUsername){
     //     $scope.loggedInUsername = "Guest";
     //  }
-    
     
 });

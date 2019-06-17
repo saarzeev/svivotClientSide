@@ -15,7 +15,8 @@ angular.module("myApp")
         if(response && response.data && response.data.token && response.data.name){
             $window.sessionStorage.setItem('token', response.data.token);
             $window.sessionStorage.setItem('username', response.data.name);
-            $rootScope.loggedInUsername = $window.sessionStorage.username;
+            $rootScope.loggedInUsername = $window.sessionStorage.username
+            $rootScope.isLoggedIn = true;
             $location.url("/");
         }
         else{
