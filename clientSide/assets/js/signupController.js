@@ -5,6 +5,7 @@ angular.module("myApp")
 
     $scope.countries = ['Australia', 'Bolivia', 'China', 'Denemark', 'Israel', 'Latvia', 'Monaco', 'August', 'Norway', 'Panama', 'Switzerland', 'USA'];
     $scope.countries.sort();
+    $scope.qa = [{question: 'What is your mothers maiden name?', answer: $scope.ans1}, {question: 'What is your hometown?', answer: $scope.ans2}];
 
     $scope.isSelectionInvalid = function(registrationForm) {
         if(registrationForm.country == ""){

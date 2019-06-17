@@ -4,13 +4,55 @@
             <form name ="loginForm" class="form-style-9" action="#"  qn:validate="errors">
                 
                 
+                    <span ng-hide="isRestoringPassword">
                     <input type="text" ng-model="loginUserName" name="loginUserName" class="field-style field-split align-left" 
                     placeholder="User Name" />
                     <input type="password" ng-model="loginPassword" name="loginPassword" class="field-style field-split align-right" 
                     placeholder="Password" />
                     <span ng:show="loginForm.$serverError.badParams.$invalid"> {{loginForm.$serverError.badParams.message}} <br> </span>                
                     <input type="button" value="Log In" ng-click="tryLogIn()"/>
+                    <input type="button" value="Restore Password" ng-click="isRestoringPassword = true; "/>
+                    </span>
+
+                    <span ng-show="isRestoringPassword">
+                            <form name="signupForm" class="form-style-9" novalidate ng-submit="submitSignupForm()">
+                                    <ul>
+                                        
+                                            <input type="text" name="username" class="field-style field-split align-left" 
+                                            placeholder="User Name" ng-maxlength="8" ng-minlength="3" ng-pattern="/^[a-zA-Z]*$/" ng-model='username' required/>
                     
+                                            <span ng-show="signupForm.username.$touched">
+                                                <span ng-show="username.$error.minlength">Minimum username length is 3<br> </span>
+                                                <span ng-show="username.$error.maxlength">Maximum username length is 8<br> </span>
+                                                <span ng-show="username.$error.pattern">Username should consist of letters only </span>
+                                                <span ng-show="username.$error.required">A username is required</span>
+                                            </span>
+                    
+                                            <span>
+                                                Password recovery question 1: {{ qa[0].question }} <input type="text" name="ans1" ng-model="ans1" class="field-style field-split align-right" 
+                                                placeholder="Answer" ng-pattern="/^([a-zA-Z]*(\s|$))*$/" required/>
+                                                <span ng-show="ans1.$touched">
+                                                    <span ng-show="ans1.$error.pattern">Answers should consist of letters only </span>
+                                                    <span ng-show="ans1.$error.required">Answers are required</span>
+                                                </span>
+                                            </span>
+                                            <span>
+                                                Password recovery question 2: {{ qa[1].question }} <input type="text" name="ans2" ng-model="ans2" class="field-style field-split align-right" 
+                                                placeholder="Answer" ng-pattern="/^([a-zA-Z]*(\s|$))*$/" required/>
+                                                <span ng-show="ans2.$touched">
+                                                    <span ng-show="ans2.$error.pattern">Answers should consist of letters only </span>
+                                                    <span ng-show="ans2.$error.required">Answers are required</span>
+                                                </span>
+                                            </span>
+                                            
+                                            <!-- TODO make sure the submit button actually lookis disabled when it is ng-disabled. -->
+                                            <br>
+                                            <br>
+                                            <input type="submit" value="Restore" id="submit" ng-disabled="signupForm.$invalid">
+                                            <input type="button" value="Cancel restoration" ng-click="isRestoringPassword = false;">
+                                    </ul>                                                              
+                                </form>
+                    </span>
                                                                             
             </form>
         </section>

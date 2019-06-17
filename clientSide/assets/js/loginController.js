@@ -4,7 +4,10 @@ angular.module("myApp")
 
 
 .controller("loginController", ['$scope','$rootScope','$http', '$window', '$location', function ($scope, $rootScope, $http, $window, $location) {
-
+    
+    $scope.qa = [{question: 'What is your mothers maiden name?', answer: $scope.ans1}, {question: 'What is your hometown?', answer: $scope.ans2}];
+    $scope.isRestoringPassword = false;
+    
     $scope.tryLogIn = function() {
         const url = `${localUrl}/LogIn`;
         const data = {username: $scope.loginUserName, psw: $scope.loginPassword };
@@ -15,7 +18,7 @@ angular.module("myApp")
         if(response && response.data && response.data.token && response.data.name){
             $window.sessionStorage.setItem('token', response.data.token);
             $window.sessionStorage.setItem('username', response.data.name);
-            $rootScope.loggedInUsername = $window.sessionStorage.username
+            $rootScope.loggedInUsername = $window.sessionStorage.username;
             $rootScope.isLoggedIn = true;
             $location.url("/");
         }

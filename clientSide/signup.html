@@ -79,7 +79,7 @@
                         <br>
                         <br>
                         <span>
-                            Password recovery question 1: {{ registrationForm.qa[0].question }} <input type="text" name="ans1" ng-model="ans1" class="field-style field-split align-right" 
+                            Password recovery question 1: {{ qa[0].question }} <input type="text" name="ans1" ng-model="ans1" class="field-style field-split align-right" 
                             placeholder="Answer" ng-pattern="/^([a-zA-Z]*(\s|$))*$/" required/>
                             <span ng-show="ans1.$touched">
                                 <span ng-show="ans1.$error.pattern">Answers should consist of letters only </span>
@@ -89,7 +89,7 @@
                         <br>
                         <br>
                         <span>
-                            Password recovery question 2: {{ registrationForm.qa[1].question }} <input type="text" name="ans2" ng-model="ans2" class="field-style field-split align-right" 
+                            Password recovery question 2: {{ qa[1].question }} <input type="text" name="ans2" ng-model="ans2" class="field-style field-split align-right" 
                             placeholder="Answer" ng-pattern="/^([a-zA-Z]*(\s|$))*$/" required/>
                             <span ng-show="ans2.$touched">
                                 <span ng-show="ans2.$error.pattern">Answers should consist of letters only </span>
@@ -103,6 +103,5 @@
                         <input type="submit" value="Sign Up" id="submit" ng-disabled="signupForm.$invalid">
                 </ul>                                                              
             </form>
-            <script type="text/javascript" src="users.js"></script>
     </section>
 </div> 
