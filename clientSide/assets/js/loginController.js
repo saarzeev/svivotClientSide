@@ -3,7 +3,7 @@ const localUrl = 'http://localhost:3000';
 angular.module("myApp")
 
 
-.controller("loginController", ['$scope','$http', '$window', function ($scope, $http, $window) {
+.controller("loginController", ['$scope','$rootScope','$http', '$window', '$location', function ($scope, $rootScope, $http, $window, $location) {
 
     $scope.tryLogIn = function() {
         const url = `${localUrl}/LogIn`;
@@ -15,10 +15,11 @@ angular.module("myApp")
         if(response && response.data && response.data.token && response.data.name){
             $window.sessionStorage.setItem('token', response.data.token);
             $window.sessionStorage.setItem('username', response.data.name);
-            //TO redirect to loged in window
+            $rootScope.loggedInUsername = $window.sessionStorage.username;
+            $location.url("/");
         }
         else{
-            $scope.errorOnLogIn("");
+            $scoper.errorOnLogIn("");
         }
     }
 

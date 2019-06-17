@@ -4,10 +4,11 @@ var myApp = angular.module('myApp', ["ngRoute"]);
 myApp.config(function($routeProvider)  {
     $routeProvider
         // homepage
-        // .when('/', {
-        //     // this is a template
-        //     template: '<h1>This is the default route</h1>'
-        // })
+        .when('/', {
+            // this is a template
+            //template: '<h1>This is the default route</h1>'
+            controller: 'mainController as mainCtrl'
+        })
         // login
         .when('/login', {
             // this is a template url
@@ -28,8 +29,9 @@ myApp.config(function($routeProvider)  {
 });
 
 myApp.controller("mainController", function($scope){
-     
-    $scope.
-    console.log($scope);
+    //  if(!$scope.loggedInUsername){
+    //     $scope.loggedInUsername = "Guest";
+    //  }
+    
     
 });
