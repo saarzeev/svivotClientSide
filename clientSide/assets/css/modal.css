@@ -35,3 +35,7 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+  .modalPic{
+    cursor: pointer;
+  }
