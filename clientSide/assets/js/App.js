@@ -12,6 +12,12 @@ myApp.config(function($routeProvider)  {
             templateUrl: 'defaultPage.html',
             controller: 'defaultPage as dPCtrl'
         })
+        // homepage for logIn
+        .when('/loginHome', {
+            // this is a template
+            templateUrl: 'loginHome.html',
+            controller: 'loginHome as loginHomeCtrl'
+        })
         // login
         .when('/login', {
             // this is a template url

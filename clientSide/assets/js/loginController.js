@@ -20,8 +20,9 @@ angular.module("myApp")
             $window.sessionStorage.setItem('token', response.data.token);
             $window.sessionStorage.setItem('username', response.data.name);
             $rootScope.loggedInUsername = $window.sessionStorage.username;
+            $rootScope.welcomePath = '#!loginHome'
             $rootScope.isLoggedIn = true;
-            $location.url("/loggedInHome");
+            $location.url("/loginHome");
         }
         else{
             $scope.errorOnLogIn("");
