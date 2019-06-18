@@ -8,12 +8,15 @@ angular.module("myApp")
     $scope.qa = [{question: 'What is your mothers maiden name?', answer: $scope.ans1}, {question: 'What is your hometown?', answer: $scope.ans2}];
 
     $scope.isSelectionInvalid = function(registrationForm) {
-        if(registrationForm.country == ""){
+        console.log($scope.country);
+        console.log($scope.categories);
+        console.log($scope.categories.length);
+        if($scope.country == ""){
             alert("Please select a country");
-        }else if(registrationForm.categories.length < 2){
+        }else if($scope.categories.length < 2){
             alert("Please select at least 2 categories you are interested in");
         }
-        return(registrationForm.country == "" || registrationForm.categories.length < 2 );
+        return($scope.country == "" || $scope.categories.length < 2 );
     };
 
     $scope.submitSignupForm = function () {
@@ -21,7 +24,7 @@ angular.module("myApp")
         if(!this.isSelectionInvalid()){
 
             $scope.registrationForm = {
-                username: $scope.username,
+                username: $scope.signupUserName,
                 psw: $scope.psw,
                 qa:[{question: 'What is your mothers maiden name?', answer: $scope.ans1}, {question: 'What is your hometown?', answer: $scope.ans2}],
                 email: $scope.email,
@@ -40,7 +43,7 @@ angular.module("myApp")
     $scope.successfullSignUp = function(response) {
         if(response){
             alert("Registration was completed successfully.\nPlease log in to your new user.");
-            $location.url("/login");
+            $scope.isRestoringPassword = false;
         }
         else{
             $scope.errorOnSignUp("");
