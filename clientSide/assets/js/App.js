@@ -9,8 +9,8 @@ myApp.config(function($routeProvider)  {
         // homepage
         .when('/', {
             // this is a template
-            //template: '<h1>This is the default route</h1>'
-            controller: 'mainController as mainCtrl'
+            templateUrl: 'defaultPage.html',
+            controller: 'defaultPage as dPCtrl'
         })
         // login
         .when('/login', {

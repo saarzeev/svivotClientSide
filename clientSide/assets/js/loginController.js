@@ -20,7 +20,7 @@ angular.module("myApp")
             $window.sessionStorage.setItem('username', response.data.name);
             $rootScope.loggedInUsername = $window.sessionStorage.username;
             $rootScope.isLoggedIn = true;
-            $location.url("/");
+            $location.url("/loggedInHome");
         }
         else{
             $scoper.errorOnLogIn("");

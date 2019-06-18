@@ -1,0 +1,55 @@
+<header>
+    <h2>Ready to find youre <strong>next vecation!?</strong></h2>
+    <p><strong>Let's Go</strong></p>
+</header>
+<footer>
+    <ul class="buttons">
+        <li><a href="#!login" class="button secondary" ng-hide="isLoggedIn">Log In</a></li>
+		<li><a href="#!signup" class="button primary" ng-hide="isLoggedIn">Sign Up</a></li>
+    </ul>
+</footer>
+<br />
+<br />
+<header class="special container">
+    <br />
+    <span class="icon solid fa-chart-bar"></span>
+    <h2>We choosed <strong>Some Great</strong> vecations for you </h2>
+    <span ng-show="error">loading POIs - {{errorValue.value}}</span>
+    <br />
+</header>
+<section class="wrapper style1 container special">
+    <div class="row">
+           
+        <div class="col-4 col-12-narrower" ng-init = "getPopularPOIGuest()">
+            <section>
+                    <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[0].img}} alt="" /></a>
+                    <header>
+                        <h3>{{threeRandomPopularPOIs[0].name}}</h3>
+                    </header>
+            </section>
+
+        </div>
+        <div class="col-4 col-12-narrower">
+
+            <section>
+                    <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[1].img}} alt="" /></a>
+                    <header>
+                        <h3>{{threeRandomPopularPOIs[1].name}}</h3>
+                    </header>
+                   
+            </section>
+
+        </div>
+        <div class="col-4 col-12-narrower">
+
+            <section>
+                    <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[2].img}} alt="" /></a>
+                    <header>
+                        <h3>{{threeRandomPopularPOIs[2].name}}</h3>
+                    </header>
+            </section>
+
+        </div>
+    </div>
+</section>
+
