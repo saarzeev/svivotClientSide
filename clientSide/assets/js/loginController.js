@@ -7,12 +7,13 @@ angular.module("myApp")
     
     $scope.qa = [{question: 'What is your mothers maiden name?', answer: $scope.ans1}, {question: 'What is your hometown?', answer: $scope.ans2}];
     $scope.isRestoringPassword = false;
+    $scope.restoredPassword = "";
     
     $scope.tryLogIn = function() {
         const url = `${localUrl}/LogIn`;
         const data = {username: $scope.loginUserName, psw: $scope.loginPassword };
         $http.post(url, data).then($scope.successfulLogIn, $scope.errorOnLogIn);
-    }
+    };
 
     $scope.successfulLogIn = function(response) {
         if(response && response.data && response.data.token && response.data.name){
@@ -23,17 +24,44 @@ angular.module("myApp")
             $location.url("/");
         }
         else{
-            $scoper.errorOnLogIn("");
+            $scope.errorOnLogIn("");
         }
-    }
+    };
 
     $scope.errorOnLogIn = function(errorResponse) {
         if(errorResponse && (errorResponse.status == 404 || errorResponse.status == 400)){
            $scope.errors =  [{ key: 'badParams', value: errorResponse.data }];
         }
-        else
-             $scope.errors =  [{ key: 'badParams', value: 'temporal problem try please again later' }];
-    }
+        else{
+            $scope.errors =  [{ key: 'badParams', value: 'We encountered a temporary problem.\nPlease try again later' }];
+        }
+             
+    };
+
+
+    $scope.submitRestorePasswordForm = function(){
+        const url = `${localUrl}/answersIdentificationQuestion`;
+        var locQa =  [{question: 'What is your mothers maiden name?', answer: $scope.ans1}, {question: 'What is your hometown?', answer: $scope.ans2}];
+        const data = {username: $scope.username, qa: locQa };
+        $http.post(url, data).then($scope.successRestore, $scope.errorRestore);
+    };
+
+    $scope.successRestore = function(response) {
+        if(response && response.data && response.data.psw){
+            alert("Password was retrieved successfully! Your password:\n" + response.data.psw);
+            $scope.isRestoringPassword = true;
+        }
+        else{
+            $scope.errorRestore(response);
+        }
+    };
+
+    $scope.errorRestore = function(errorResponse) {
+        if(errorResponse && (errorResponse.status == 404 || errorResponse.status == 400 || errorResponse.status == 500)){
+            alert("Well, This is embarrassing.\nWe were not able to restore your password.\n" + errorResponse.data);
+        }
+             
+    };
     
 }])
 // this is our directive
