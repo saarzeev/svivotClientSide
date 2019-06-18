@@ -1,0 +1,46 @@
+<header>
+        <h2><strong>Paris</strong> is the place to be </h2>
+        <span ng-show="error">loading POIs error - {{errorValue.value}}</span>
+        <br />
+    </header>
+    <section class="wrapper style1 container special">
+        <div class="row">
+               
+            <div class="col-4 col-12-narrower" ng-init = "getPopularPOIGuest()">
+                <section>
+                        <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[0].img}} alt="" /></a>
+                        <header>
+                            <h3>{{threeRandomPopularPOIs[0].name}}</h3>
+                        </header>
+                        <p>Street food had a pretty slow start in France but is now starting to make waves in large cities beyond Paris. Driven by the success of street food movements in the US, the UK and other countries around the world, the scene is perfect for those looking for an affordable, casual bite to eat on les boulevards.</p>
+
+                </section>
+    
+            </div>
+            <div class="col-4 col-12-narrower">
+    
+                <section>
+                        <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[1].img}} alt="" /></a>
+                        <header>
+                            <h3>{{threeRandomPopularPOIs[1].name}}</h3>
+                        </header>
+                        <p>Enjoying the city itself is fairly straightforward: you can just wander around without a plan or take a walking tour. If you want to enjoy the Parisian museums however, I truly advise you to plan it beforehand. There are two ways to enjoy the museums in Paris: the tourists’ way (you wait, it’s crowded…) and the Parisian way (secret entrances, avoiding the rush days and hours)</p>
+                       
+                </section>
+    
+            </div>
+            <div class="col-4 col-12-narrower">
+    
+                <section>
+                        <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[2].img}} alt="" /></a>
+                        <header>
+                            <h3>{{threeRandomPopularPOIs[2].name}}</h3>
+                        </header>
+                        <p>Paris is synonymous with haute-couture, straight-off-the-runway gowns, and pieces of clothing many of us think we can’t afford. Case in point: take a stroll along the Champs-Élyssés or on the luxurious St-Germain-des-Près district, and you will come across expensive and luxurious fashion labels such as Chanel, Louis Vuitton and the like.</p>
+                </section>
+    
+            </div>
+        </div>
+    </section>
+    
+    

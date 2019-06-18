@@ -23,6 +23,11 @@ myApp.config(function($routeProvider)  {
             templateUrl: 'signup.html',
             controller : 'signupController as signupCtrl'
         })
+         // about
+         .when('/about', {
+            templateUrl: 'about.html',
+            controller : 'aboutController as aboutCtrl'
+        })
         // .when('/httpRequest', {
         //     templateUrl: 'pages/http/request.html',
         //     controller : 'httpController as httpCtrl'
