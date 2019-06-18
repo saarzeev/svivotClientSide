@@ -10,40 +10,48 @@
 </footer>
 <br />
 <br />
-<link rel="stylesheet" href="modal.css" />
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p style="color: black">Some text in the Modal..</p>
-  </div>
-
-</div>
+<link rel="stylesheet" href="./assets/css/modal.css" />
 
 <header class="special container">
     <br />
     <span class="icon solid fa-chart-bar"></span>
-    <h2>We've chosen <strong>some great</strong> vacations for you </h2>
+    <h2>We've chosen some <strong> great</strong> vacations for you </h2>
     <span ng-show="error">loading POIs error - {{errorValue.value}}</span>
     <br />
 </header>
 <section class="wrapper style1 container special">
-    <div class="row">
-           
-        <div class="col-4 col-12-narrower" ng-init = "getPopularPOIGuest()">
+    <div class="row" ng-init="getPopularPOIGuest()">
+        <div ng-repeat="poi in threeRandomPopularPOIs | limitTo:3" class="col-4 col-12-narrower">
             <section>
-                    <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[0].img}} alt="" /></a>
+                    <a ng-click="onModalClick($index)" class="image featured modalPic"><img ng-src= {{threeRandomPopularPOIs[$index].img}} alt="" /></a>
                     <header>
-                        <h3>{{threeRandomPopularPOIs[0].name}}</h3>
+                        <h3>{{threeRandomPopularPOIs[$index].name}}</h3>
                     </header>
+
+                        <!-- The Modal -->
+                        <div id="myModal{{$index}}" class="modal">
+
+                        <!-- Modal content -->
+                        <section class="wrapper style3 container special">
+                        <div class="row">
+                        <div class="modal-content{{$index}}">
+                            <span ng-click="onXClick($index)" class="close">&times;</span>
+                            <section style="color: black">Category: {{threeRandomPopularPOIs[$index].category}}
+                                <br>
+                                Rank: {{threeRandomPopularPOIs[$index].rank}} Out of 100
+                                <br>
+                                Details: {{threeRandomPopularPOIs[$index].details}}
+                                <br>
+                                # of Ranks:  {{threeRandomPopularPOIs[$index].category.views}}
+                            </section>
+                        </div>
+                        </div>
+                        </section>
+                        </section>
             </section>
 
         </div>
-        <div class="col-4 col-12-narrower">
+        <!-- <div class="col-4 col-12-narrower">
 
             <section>
                     <a href="#" class="image featured"><img ng-src= {{threeRandomPopularPOIs[1].img}} alt="" /></a>
@@ -63,7 +71,7 @@
                     </header>
             </section>
 
-        </div>
+        </div> -->
     </div>
 </section>
 
