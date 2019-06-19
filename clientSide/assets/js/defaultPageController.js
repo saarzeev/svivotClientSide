@@ -61,7 +61,7 @@ angular.module("myApp")
     }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    window.onclick = function(index) {
         var modal = document.getElementById("myModal" + index);
 
         if (event.target == modal) {
