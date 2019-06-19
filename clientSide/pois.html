@@ -28,14 +28,15 @@
                         </header>
 
                         <!-- The Modal -->
-                        <div id="myModal{{poi.name}}" class="modal">
+                        <div id="myPOIModal{{poi.name}}" class="modal">
 
                             <!-- Modal content -->
                             <section>
                                 <div class="row">
                                     <div class="modal-content">
                                         <span ng-click="onXClick(poi)" class="close">&times;</span>
-                                        <section style="color: black">Category: {{sortedPOIs[sortedPOIs.indexOf(poi)].category}}
+                                        <section style="color: black">Category:
+                                            {{sortedPOIs[sortedPOIs.indexOf(poi)].category}}
                                             <br>
                                             Rank: {{sortedPOIs[sortedPOIs.indexOf(poi)].rank}} Out of 100
                                             <br>
@@ -43,6 +44,43 @@
                                             <br>
                                             # of Views: {{sortedPOIs[sortedPOIs.indexOf(poi)].views}}
                                         </section>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+
+                    <section>
+                        <input type="button" value="Write A Review" ng-click="onWriteReviewClick(poi)" ng-show="isLoggedIn" />
+
+                        <!-- The Modal -->
+                        <div id="myReviewModal{{poi.name}}" class="modal">
+
+                            <!-- Modal content -->
+                            <section style="color: black">
+                                <div class="row">
+                                    <div class="modal-content">
+                                        <span ng-click="onReviewXClick(poi)" class="close">&times;</span>
+                                        <form name="ReviewForm" action="#" qn:validate="errors" novalidate>
+
+                                                <input type="text" style="overflow: auto" rows="4" cols="50" ng-model="writtenReview" name="writtenReview"
+                                                    
+                                                    placeholder="Please consider writing a written review" />
+
+                                                <input type="text" ng-model="stars" name="stars"
+                                
+                                                    placeholder="Choose a rating between 1-100"
+                                                    ng-pattern="/^[1-9][0-9]?$|^100$/" required />
+
+                                                <span ng-show="ReviewForm.stars.$touched">
+                                                    <span ng-show="ReviewForm.stars.$error.pattern">Rating must be a
+                                                        number between 1-100 <br></span>
+                                                    <span ng-show="ReviewForm.stars.$error.required">A rating is
+                                                        required <br></span>
+                                                </span>
+                                                <input type="button" value="Submit Review" ng-disabled="ReviewForm.$invalid" ng-click="submitReview(poi)"/>
+                                            </span>
+                                        </form>
                                     </div>
                                 </div>
                             </section>
