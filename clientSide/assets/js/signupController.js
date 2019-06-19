@@ -44,6 +44,7 @@ angular.module("myApp")
         if(response){
             alert("Registration was completed successfully.\nPlease log in to your new user.");
             $scope.isRestoringPassword = false;
+            $location.url('/login');
         }
         else{
             $scope.errorOnSignUp("");
