@@ -88,18 +88,6 @@ angular.module("myApp")
             var modal = document.getElementById("myReviewModal" + poi.name);
             modal.style.display = "none";
         };
-        // When the user clicks anywhere outside of the modal, close it
-        // This does not really work...
-        // window.onclick = function() {
-        //     for (let index = 0; index < $scope.sortedPOIs.length; index++) {
-        //         const poi = sortedPOIs[index];
-        //         var modal = document.getElementById("myModal" + poi);
-
-        //         if (event.target == modal) {
-        //             modal.style.display = "none";
-        //         }
-        //     }
-        // }
 
     }]);
 

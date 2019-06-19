@@ -47,27 +47,50 @@ angular.module("myApp")
         
          $scope.threeRandomPopularPOIs = pois;
     }
-    
+
+    $scope.getTwoLastReviews = function(index){
+        const url = `${localUrl}/getLastReviews`;
+        const data = {poiName: $scope.threeRandomPopularPOIs[index].name};
+        return $http.post(url, data);
+    }
+
+    $scope.successfulGetTwoLastReviews = function(index, reviews){
+        let review = '';
+        if(reviews && reviews.data){
+            if(reviews.data.length == 1){
+                review =   `Last Review: ${reviews.data[0].review}`
+            }
+            else if(reviews.data.length == 2){
+                review =`Last Reviews: 1. ${reviews.data[0].review}
+                                       2. ${reviews.data[1].review}`;
+            }
+        }
+        $scope.threeRandomPopularPOIs[index].reviews = review;
+    }
+
+    $scope.addViewToPoi = function(index){
+        const url = `${localUrl}/addView`;
+        const data = {poiName: $scope.threeRandomPopularPOIs[index].name};
+        return $http.post(url, data);
+    }
+
     // When the user clicks on the button, open the modal 
     $scope.onModalClick = function(index){
         var modal = document.getElementById("myModal" + index);
-        modal.style.display = "block";
+         $scope.getTwoLastReviews(index)
+        .then((reviews)=> $scope.successfulGetTwoLastReviews(index, reviews))
+        .catch(() => $scope.threeRandomPopularPOIs[index].reviews = '')
+        .finally(() =>  modal.style.display = "block");
     }
 
     // When the user clicks on <span> (x), close the modal
     $scope.onXClick = function(index){
         var modal = document.getElementById("myModal" + index);
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    // This does not really work...
-    window.onclick = function(index) {
-        var modal = document.getElementById("myModal" + index);
-
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+        $scope.addViewToPoi(index)
+        .then(()=> {
+            $scope.threeRandomPopularPOIs[index].views ++;
+        })
+        .finally(()=> modal.style.display = "none");
     }
     
 }]);
