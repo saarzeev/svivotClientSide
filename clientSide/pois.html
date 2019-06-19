@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="./assets/css/searchbar.css" />
     <div class="bar">
         <!-- Create a binding between the searchString model and the text field -->
-        <input type="text" ng-model="searchString" placeholder="Search your favorite POI" />
+        <input type="text" ng-model="searchString" placeholder="Search for POIs..." />
     </div>
 
     <ul>
@@ -12,7 +12,7 @@
         <header class="special container">
             <br />
             <span class="icon solid fa-chart-bar"></span>
-            <h2>We've chosen some <strong> great</strong> vacations for you </h2>
+            <h2>We've chosen some <strong> great</strong> locations for you </h2>
             <span ng-show="error">loading POIs error - {{errorValue.value}}</span>
             <br />
         </header>
