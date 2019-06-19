@@ -18,7 +18,7 @@
         </header>
 
         <section class="wrapper style1 container special">
-            <div class="row" ng-init="getPopularPOIGuest()">
+            <div class="row" ng-init="getAllPOIs()">
                 <div ng-repeat="poi in sortedPOIs | searchByPOIName:searchString" class="col-4 col-12-narrower">
                     <section>
                         <a ng-click="onModalClick(poi)" class="image featured modalPic"><img

@@ -3,10 +3,9 @@ angular.module("myApp")
 
 .controller("poisController", ['$scope','$http', '$window', '$filter', function ($scope, $http, $window, $filter) {
     
-    $scope.getPopularPOIGuest = function() {
-        const url = `${localUrl}/getPopularPOI`;
-        const data = {threshold: 1};
-        $http.post(url, data).then($scope.successfulGet, $scope.errorOnGet);
+    $scope.getAllPOIs = function() {
+        const url = `${localUrl}/getAllPOI`;
+        $http.get(url).then($scope.successfulGet, $scope.errorOnGet);
     }
 
     $scope.successfulGet = function(response) {
