@@ -36,31 +36,22 @@
 </header>
 <section class="wrapper style1 container special">
     <div class="row">
-        <div class="col-6 col-12-narrower">
-
+        <div id="firstColumnFavorites" class="col-6 col-12-narrower" ng-init="showFavorites()">
             <section>
-                <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+                <a href="#" class="image featured"><img ng-src={{latestFavorites[0].img}} alt="" /></a>
                 <header>
-                    <h3>Hyperspace Travel</h3>
+                    <h3>{{latestFavorites[0].name}}</h3>
                 </header>
-                <p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit.
-                    Sed
-                    tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
             </section>
-
         </div>
+
         <div class="col-6 col-12-narrower">
-
             <section>
-                <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+                <a href="#" class="image featured"><img ng-src={{latestFavorites[1].img}} alt="" /></a>
                 <header>
-                    <h3>And Another Train</h3>
+                    <h3>{{latestFavorites[1].name}}</h3>
                 </header>
-                <p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit.
-                    Sed
-                    tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
             </section>
-
         </div>
     </div>
 </section>

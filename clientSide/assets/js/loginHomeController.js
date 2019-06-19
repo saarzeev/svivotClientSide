@@ -56,8 +56,31 @@ angular.module("myApp")
         }
 
         // favorites handler
+        $scope.showFavorites = function () {
+            const favorites = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
+            if (favorites && favorites.length >= 0) {
+                $scope.sortFavoriteByData(angular.copy(favorites));
+            }
+            else {
+                $scope.error = true;
+                $scope.errorValue = { key: 'no favorites', value: `You don't have any favorites,\n you might want to add some` };
+            }
+        }
 
-        
+        $scope.sortFavoriteByData = function (favorites) {
+            for (let i = 0; i < favorites.length; i++) {
+                favorites[i].date = Date.parse(favorites[i].date);
+            }
+
+            favorites.sort((firstFavorite, seconedFavorite) => Date.parse(firstFavorite.date) - Date.parse(seconedFavorite.date));
+            if (favorites.length >= 2) {
+                $scope.latestFavorites = favorites.slice(0, 2);
+            }
+            else {
+                document.getElementById("firstColumnFavorites").className = "col-12 col-12-narrower";
+                $scope.latestFavorites = favorites.slice(0, 1);
+            }
+        }
 
         // errors handler
         $scope.errorOnGet = function (errorResponse) {

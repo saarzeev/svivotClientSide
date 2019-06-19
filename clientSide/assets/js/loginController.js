@@ -22,7 +22,6 @@ angular.module("myApp")
                 $rootScope.loggedInUsername = $window.sessionStorage.username;
                 $rootScope.welcomePath = '#!loginHome'
                 $rootScope.isLoggedIn = true;
-                $location.url("/loginHome");
                 $scope.getAllMyFavorite();
             }
             else {
@@ -70,16 +69,18 @@ angular.module("myApp")
             $http.post(url, null, headers)
                 .then((favorites) => {
                     if (favorites && favorites.data) {
-                        $window.sessionStorage.setItem('userFavoritePoi', favorites.data);
+                        $window.sessionStorage.setItem('userFavoritePoi', JSON.stringify(favorites.data));
                     }
                     else {
                         $scope.errorFavorite();
                     }
-                }).catch($scope.errorFavorite());
+                })
+                .catch((error) => $scope.errorFavorite())
+                .finally(() => $location.url("/loginHome"));
         }
 
         $scope.errorFavorite = function () {
-            $window.sessionStorage.setItem('userFavoritePoi', []);
+            $window.sessionStorage.setItem('userFavoritePoi', JSON.stringify([]));
         };
     }])
     // this is our directive
