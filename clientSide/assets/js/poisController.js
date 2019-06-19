@@ -51,10 +51,13 @@ angular.module("myApp")
                     date: new Date()
                 };
             }
-            $http.post(url, data, headers).then($scope.successfulReviewAdded, $scope.errorOnAddReview);
+            $http.post(url, data, headers)
+                .then(() => $scope.successfulReviewAdded(poi))
+                .then(() => $scope.setNewRank(poi))
+                .catch(() => $scope.errorOnAddReview());
         };
 
-        $scope.successfulReviewAdded = function (response) {
+        $scope.successfulReviewAdded = function (poi) {
             alert("Successfully added your review. Thank you!");
         }
 
@@ -64,16 +67,59 @@ angular.module("myApp")
             }
         };
 
+        $scope.setNewRank = function (poi) {
+            const url = `${localUrl}/getAllPOI`;
+            $http.get(url)
+                .then((pois) => {
+                    if (pois && pois.data) {
+                        poi.rank = pois.data.find((item) => poi.name === item.name).rank;
+                    }
+                })
+        }
+
+        $scope.addViewToPoi = function (poiName) {
+            const url = `${localUrl}/addView`;
+            const data = { poiName: poiName };
+            return $http.post(url, data);
+        }
+
+        $scope.getTwoLastReviews = function (poiName) {
+            const url = `${localUrl}/getLastReviews`;
+            const data = { poiName: poiName };
+            return $http.post(url, data);
+        }
+
+        $scope.successfulGetTwoLastReviews = function (poi, reviews) {
+            let review = '';
+            if (reviews && reviews.data) {
+                if (reviews.data.length == 1) {
+                    review = `Last Review: ${reviews.data[0].review}`
+                }
+                else if (reviews.data.length == 2) {
+                    review = `Last Reviews: 1. ${reviews.data[0].review}
+                                           2. ${reviews.data[1].review}`;
+                }
+            }
+            poi.reviews = review;
+        }
+
         // When the user clicks on the button, open the modal 
         $scope.onModalClick = function (poi) {
             var modal = document.getElementById("myPOIModal" + poi.name);
-            modal.style.display = "block";
+            $scope.getTwoLastReviews(poi.name)
+                .then((reviews) => $scope.successfulGetTwoLastReviews(poi, reviews))
+                .catch(() => poi.reviews = '')
+                .finally(() => modal.style.display = "block");
         };
 
         // When the user clicks on <span> (x), close the modal
         $scope.onXClick = function (poi) {
             var modal = document.getElementById("myPOIModal" + poi.name);
-            modal.style.display = "none";
+            $scope.addViewToPoi(poi.name)
+                .then(() => {
+                    poi.views++;
+                })
+                .finally(() => modal.style.display = "none");
         };
 
         // When the user clicks on the button, open the modal 
@@ -81,7 +127,6 @@ angular.module("myApp")
             var modal = document.getElementById("myReviewModal" + poi.name);
             modal.style.display = "block";
         };
-
 
         // When the user clicks on <span> (x), close the modal
         $scope.onReviewXClick = function (poi) {
