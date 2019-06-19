@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="./assets/css/modal.css" />
 <header class="special container">
     <br />
     <span class="icon solid fa-chart-bar"></span>
@@ -5,25 +6,37 @@
     <span ng-show="error">loading POIs error - {{errorValue.value}}</span>
     <br />
 </header>
+<!--  -->
 <section class="wrapper style1 container special">
-    <div class="row">
-        <div class="col-6 col-12-narrower" ng-init="getUsersCategories()">
+    <div class="row" ng-init="getUsersCategories()">
+        <div ng-repeat="poi in byCategoryPois" class="col-6 col-12-narrower">
             <section>
-                <a href="#" class="image featured"><img ng-src={{byCategoryPois[0].img}} alt="" /></a>
+                <a ng-click="onModalClick($index, 'myModal')" class="image featured modalPic"><img
+                        ng-src={{byCategoryPois[$index].img}} alt="" /></a>
                 <header>
-                    <h3>{{byCategoryPois[0].name}}</h3>
+                    <h3>{{byCategoryPois[$index].name}}</h3>
                 </header>
-            </section>
+                <!-- The Modal -->
+                <div id="myModal{{$index}}" class="modal">
 
-        </div>
-        <div class="col-6 col-12-narrower">
-            <section>
-                <a href="#" class="image featured"><img ng-src={{byCategoryPois[1].img}} alt="" /></a>
-                <header>
-                    <h3>{{byCategoryPois[1].name}}</h3>
-                </header>
+                    <!-- Modal content -->
+                    <section class="wrapper style3 container special">
+                        <div class="row">
+                            <div class="modal-content{{$index}}">
+                                <span ng-click="onXClick($index, 'myModal')" class="close">&times;</span>
+                                <section style="color: black">Category: {{threeRandomPopularPOIs[$index].category}}
+                                    <br>
+                                    Rank: {{byCategoryPois[$index].rank}} Out of 100
+                                    <br>
+                                    Details: {{byCategoryPois[$index].details}}
+                                    <br>
+                                    # of Views: {{byCategoryPois[$index].views}}
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </section>
-
         </div>
     </div>
 </section>
@@ -35,22 +48,33 @@
     <br />
 </header>
 <section class="wrapper style1 container special">
-    <div class="row">
-        <div id="firstColumnFavorites" class="col-6 col-12-narrower" ng-init="showFavorites()">
+    <div class="row" ng-init="showFavorites()">
+        <div id="firstColumnFavorites" ng-repeat="poi in latestFavorites" class="col-6 col-12-narrower" >
             <section>
-                <a href="#" class="image featured"><img ng-src={{latestFavorites[0].img}} alt="" /></a>
+                <a ng-click="onModalClick($index, 'myModalFavorite')" class="image featured modalPic"><img ng-src={{latestFavorites[$index].img}} alt="" /></a>
                 <header>
-                    <h3>{{latestFavorites[0].name}}</h3>
+                    <h3>{{latestFavorites[$index].name}}</h3>
                 </header>
-            </section>
-        </div>
+                <!-- The Modal -->
+                <div id="myModalFavorite{{$index}}" class="modal">
 
-        <div class="col-6 col-12-narrower">
-            <section>
-                <a href="#" class="image featured"><img ng-src={{latestFavorites[1].img}} alt="" /></a>
-                <header>
-                    <h3>{{latestFavorites[1].name}}</h3>
-                </header>
+                        <!-- Modal content -->
+                        <section class="wrapper style3 container special">
+                            <div class="row">
+                                <div class="modal-content{{$index}}">
+                                    <span ng-click="onXClick($index, 'myModalFavorite')" class="close">&times;</span>
+                                    <section style="color: black">Category: {{latestFavorites[$index].category}}
+                                        <br>
+                                        Rank: {{latestFavorites[$index].rank}} Out of 100
+                                        <br>
+                                        Details: {{latestFavorites[$index].details}}
+                                        <br>
+                                        # of Views: {{latestFavorites[$index].views}}
+                                    </section>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
             </section>
         </div>
     </div>

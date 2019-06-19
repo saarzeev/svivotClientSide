@@ -60,7 +60,6 @@ angular.module("myApp")
             if (errorResponse && (errorResponse.status == 404 || errorResponse.status == 400 || errorResponse.status == 500)) {
                 alert("Well, This is embarrassing.\nWe were not able to restore your password.\n" + errorResponse.data);
             }
-
         };
 
         $scope.getAllMyFavorite = function () {
@@ -69,14 +68,32 @@ angular.module("myApp")
             $http.post(url, null, headers)
                 .then((favorites) => {
                     if (favorites && favorites.data) {
-                        $window.sessionStorage.setItem('userFavoritePoi', JSON.stringify(favorites.data));
+                        $scope.getFavoriteViews(favorites.data);
                     }
                     else {
                         $scope.errorFavorite();
                     }
                 })
                 .catch((error) => $scope.errorFavorite())
-                .finally(() => $location.url("/loginHome"));
+                
+        }
+
+        $scope.getFavoriteViews = function(favorites){
+            const url = `${localUrl}/getAllPOI`;
+            $http.get(url)
+            .then((pois)=> {
+                if(pois && pois.data){
+                    for(let i = 0 ; i< favorites.length ; i++){
+                        favorites[i].views = pois.data.find((poi) => poi.name === favorites[i].name).views;
+                    }
+                    $window.sessionStorage.setItem('userFavoritePoi', JSON.stringify(favorites));
+                }
+                else{
+                    $scope.errorFavorite();
+                }
+            })
+            .catch((err) => $scope.errorFavorite())
+            .finally(() => $location.url("/loginHome"));
         }
 
         $scope.errorFavorite = function () {
