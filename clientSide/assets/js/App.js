@@ -76,3 +76,52 @@ myApp.filter('searchByPOIName', function(){
 	};
 
 });
+
+myApp.filter('searchByCategory', function(){
+
+	// All filters must return a function. The first parameter
+	// is the data that is to be filtered, and the second is an
+	// argument that may be passed with a colon (searchFor:category)
+
+	return function(arr, category){
+
+		if(!category){
+			return arr;
+		}
+
+		var result = [];
+        
+		// Using the forEach helper method to loop through the array
+		angular.forEach(arr, function(item){
+
+			if(item.category == category){
+				result.push(item);
+			}
+
+		});
+
+		return result;
+	};
+
+});
+
+myApp.filter('sortByRank', function(){
+
+	// All filters must return a function. The first parameter
+	// is the data that is to be filtered, and the second is an
+	// argument that may be passed with a colon (searchFor:category)
+
+	return function(arr, sortMetod){
+
+		if(!sortMetod){
+			return arr;
+		}
+        switch (sortMetod){
+            case 'ascending':
+                return arr.sort((poi1, poi2) => poi1.rank - poi2.rank);
+            case 'descending':
+                return arr.sort((poi1, poi2) => poi2.rank - poi1.rank);
+        }
+	};
+
+});

@@ -8,9 +8,6 @@ angular.module("myApp")
     $scope.qa = [{question: 'What is your mothers maiden name?', answer: $scope.ans1}, {question: 'What is your hometown?', answer: $scope.ans2}];
 
     $scope.isSelectionInvalid = function(registrationForm) {
-        console.log($scope.country);
-        console.log($scope.categories);
-        console.log($scope.categories.length);
         if($scope.country == ""){
             alert("Please select a country");
         }else if($scope.categories.length < 2){
