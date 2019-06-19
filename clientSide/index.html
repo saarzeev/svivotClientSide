@@ -20,6 +20,7 @@
 		<script src="./assets/js/loginController.js"></script>
 		<script src="./assets/js/defaultPageController.js"></script>
 		<script src="./assets/js/aboutController.js"></script>
+		<script src="./assets/js/loginHomeController.js"></script>
 
 	</head>
 	<body class="index is-preload">
@@ -30,7 +31,7 @@
 					<h1 id="logo">Hello <span ng-init="loggedInUsername = 'Guest'; isLoggedIn = false" ng-bind="loggedInUsername"></span></h1>
 					<nav id="nav">
 						<ul>
-							<li class="current"><a href="#!/">Welcome</a></li>
+							<li class="current"><a  ng-init="welcomePath = '#!/';" ng-href={{welcomePath}}>Welcome</a></li>
 							<li class="submenu">
 								<a href="#">Navigate</a>
 								<ul>
@@ -38,16 +39,6 @@
 									<li id="FavoritesLink"><a href="#">Favorites</a></li>
 									<li id="logInLogOutLink"><a href="#">Log In</a></li>
 									<li><a href="#!about">About</a></li>
-									<!-- <li class="submenu">
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Dolore Sed</a></li>
-											<li><a href="#">Consequat</a></li>
-											<li><a href="#">Lorem Magna</a></li>
-											<li><a href="#">Sed Magna</a></li>
-											<li><a href="#">Ipsum Nisl</a></li>
-										</ul>
-									</li> -->
 								</ul>
 							</li>
 							<li><a href="#!login" class="button secondary" ng-hide="isLoggedIn">Log In</a></li>
@@ -74,8 +65,8 @@
 			<!-- Main -->
 				<article id="main">
 
-					<!-- One
-						<section class="wrapper style2 container special-alt">
+					<!-- One -->
+						<!-- <section class="wrapper style2 container special-alt">
 							<div class="row gtr-50">
 								<div class="col-8 col-12-narrower">
 
@@ -108,7 +99,7 @@
 					<!-- Two -->
 						
 					<!-- Three -->
-						<section class="wrapper style3 container special">
+						<!-- <section class="wrapper style3 container special">
 
 							<header class="major">
 								<h2>Next look at this <strong>cool stuff</strong></h2>
@@ -169,7 +160,7 @@
 								</ul>
 							</footer>
 
-						</section>
+						</section> -->
 
 				</article>
 
