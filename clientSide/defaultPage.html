@@ -40,7 +40,7 @@
                                 <span ng-click="onXClick($index)" class="close">&times;</span>
                                 <section style="color: black">Category: {{threeRandomPopularPOIs[$index].category}}
                                     <br>
-                                    Rank: {{threeRandomPopularPOIs[$index].rank}} Out of 100
+                                    Rank: {{((threeRandomPopularPOIs[$index].rank / 100) * 5).toFixed(1)}} Out of 5
                                     <br>
                                     Details: {{threeRandomPopularPOIs[$index].details}}
                                     <br>
