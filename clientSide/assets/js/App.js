@@ -90,7 +90,7 @@ myApp.filter('searchByCategory', function(){
 
 	return function(arr, category){
 
-		if(!category){
+		if(!category || category == 'All'){
 			return arr;
 		}
 
