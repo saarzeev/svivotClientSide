@@ -39,6 +39,11 @@ myApp.config(function($routeProvider)  {
             templateUrl: 'pois.html',
             controller : 'poisController as poisCtrl'
         })
+        //favorites
+        .when('/favorites', {
+            templateUrl: 'favorites.html',
+            controller : 'favoriteController as favoriteCtrl'
+        })
         // .when('/httpRequest', {
         //     templateUrl: 'pages/http/request.html',
         //     controller : 'httpController as httpCtrl'

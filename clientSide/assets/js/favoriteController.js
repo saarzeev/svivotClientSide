@@ -1,35 +1,18 @@
 angular.module("myApp")
 
-    .controller("poisController", ['$scope', '$http', '$window', '$rootScope', '$location', function ($scope, $http, $window, $rootScope, $location) {
-        $scope.favorites = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
+    .controller("favoriteController", ['$scope', '$http', '$window', '$rootScope', '$location', function ($scope, $http, $window, $rootScope, $location) {
+      
+        $scope.getAllFavorites = function(){
+            $scope.favorites = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
+       }
 
-        $scope.getAllPOIs = function () {
-            const url = `${localUrl}/getAllPOI`;
-            $http.get(url).then($scope.successfulGet, $scope.errorOnGet);
-        };
-
-        $scope.successfulGet = function (response) {
-            if (response && response.data && response.data.length >= 1) {
-                $scope.sortPOIs(response.data);
-            }
-            else {
-                $scope.errorOnLogIn("");
-            }
-        };
-
-        $scope.errorOnGet = function (errorResponse) {
-            if (errorResponse && errorResponse.status == 400) {
-                $scope.error = true;
-                $scope.errorValue = { key: 'badParams', value: errorResponse.data };
-            }
-            else {
-                $scope.error = { key: 'noData', value: 'no data to show' };
-            }
-        };
+       $scope.updateFavoriteDB = function(){
+//add hhtpp
+       }
 
         $scope.sortPOIs = function (pois) {
             pois.sort((a, b) => (a.name > b.name) ? 1 : -1);
-            $scope.sortedPOIs = pois;
+            $scope.favorites = pois;
         };
 
         $scope.submitReview = function (poi) {

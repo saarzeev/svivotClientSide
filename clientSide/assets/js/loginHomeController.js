@@ -68,11 +68,7 @@ angular.module("myApp")
         }
 
         $scope.sortFavoriteByData = function (favorites) {
-            for (let i = 0; i < favorites.length; i++) {
-                favorites[i].date = Date.parse(favorites[i].date);
-            }
-
-            favorites.sort((firstFavorite, seconedFavorite) => Date.parse(firstFavorite.date) - Date.parse(seconedFavorite.date));
+            favorites = favorites.sort((firstFavorite, seconedFavorite) => Date.parse(seconedFavorite.date) - Date.parse(firstFavorite.date));
             if (favorites.length >= 2) {
                 $scope.latestFavorites = favorites.slice(0, 2);
             }
@@ -199,4 +195,57 @@ angular.module("myApp")
             var modal = document.getElementById("myReviewModal" + poi.name);
             modal.style.display = "none";
         };
+
+        $scope.inFavorite = function(poi){
+            const favorites = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
+            return $rootScope.isLoggedIn && favorites.find((favorite) => favorite.name === poi.name) !== undefined;
+        }
+
+        $scope.onFavoriteCheckBoxChange = function(poi){
+            const favorites = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
+            let newFavorites;
+            if(favorites.find((favorite) => favorite.name === poi.name) !== undefined) {
+                newFavorites = favorites.filter((favorite) => favorite.name !== poi.name);
+                document.getElementById("radio" + poi.name).checked = false;
+                $rootScope.numberOfFavorites --;
+            }
+            else{
+                newFavorite = angular.copy(poi);
+                newFavorite.date = $scope.createDate();
+                favorites.push(newFavorite);
+                newFavorites = favorites;
+                document.getElementById("radio" + poi.name).checked = true;
+                $rootScope.numberOfFavorites++;
+            }
+            $window.sessionStorage.setItem('userFavoritePoi',JSON.stringify(newFavorites));
+        }
+
+        $scope.createDate = function() {
+            const today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; 
+            const yyyy = today.getFullYear();
+            var HH = today.getHours();
+            var MM = today.getMinutes();
+            var SS = today.getSeconds();
+            var ampm = 'AM';
+        
+            if(dd < 10) {
+                dd ='0'+ dd;
+            } 
+            if(mm < 10) {
+                mm='0'+ mm;
+            }  
+            if(HH < 10) {
+                HH ='0'+ HH;
+            } 
+            if(MM < 10) {
+                MM ='0'+ MM;
+            } 
+            if(SS < 10) {
+                SS ='0'+ SS;
+            } 
+           
+            return `${yyyy}-${mm}-${dd}T${HH}:${MM}:${SS}Z`;
+        }
     }]);

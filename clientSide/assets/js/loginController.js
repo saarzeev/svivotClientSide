@@ -87,6 +87,7 @@ angular.module("myApp")
                         favorites[i].views = pois.data.find((poi) => poi.name === favorites[i].name).views;
                     }
                     $window.sessionStorage.setItem('userFavoritePoi', JSON.stringify(favorites));
+                    $rootScope.numberOfFavorites = favorites.length;
                 }
                 else{
                     $scope.errorFavorite();

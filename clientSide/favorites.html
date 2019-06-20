@@ -1,0 +1,116 @@
+<!-- Initialize a new AngularJS app and associate it with a module named "instantSearch"-->
+<span>
+        <link rel="stylesheet" href="./assets/css/searchbar.css" />
+        <div class="bar">
+            <!-- Create a binding between the searchString model and the text field -->
+            <input type="text" ng-model="searchString" placeholder="Search for POIs..." />
+            Sort by rank...
+            <br>
+            <select id="rankFilter" name="rankFilter" ng-model="rankFilter">
+                <option value="ascending">Ascending </option>
+                <option value="descending">Descending</option>
+            </select>
+            <br>
+            Filter by categories...
+            <br>
+            <select id="categories" name="categories" ng-model="categories">
+                <option value="Churches">Churches</option>
+                <option value="Food">Food</option>
+                <option value="Museums">Museums</option>
+                <option value="Shopping">Shopping</option>
+            </select>
+        </div>
+    
+        <ul>
+            <link rel="stylesheet" href="./assets/css/modal.css" />
+    
+            <header class="special container">
+                <br />
+                <span class="icon solid fa-chart-bar"></span>
+                <h2>heres <strong> your</strong> favorite </h2>
+                <br>
+                <input type="button" value="save changes" ng-click="updateFavoriteDB()"
+                                ng-show="isLoggedIn" />
+                <span ng-show="error">loading POIs error - {{errorValue.value}}</span>
+                <br />
+            </header>
+    
+            <section class="wrapper style1 container special">
+                <div class="row" ng-init="getAllFavorites()">
+                    <div ng-repeat="poi in favorites | searchByPOIName:searchString | searchByCategory:categories | sortByRank:rankFilter" class="col-4 col-12-narrower">
+                        <section>
+                            <a ng-click="onModalClick(poi)" class="image featured modalPic"><img
+                                    ng-src={{poi.img}} alt="" /></a>
+                            <header>
+                                <h3>{{poi.name}}</h3>
+                            </header>
+    
+                            <!-- The Modal -->
+                            <div id="myPOIModal{{poi.name}}" class="modal">
+    
+                                <!-- Modal content -->
+                                <section>
+    
+                                    <div class="modal-content">
+                                        <span ng-click="onXClick(poi)" class="close">&times;</span>
+                                        <section style="color: black">Category:
+                                            {{poi.category}}
+                                            <br>
+                                            Rank: {{poi.rank}} Out of 100
+                                            <br>
+                                            Details: {{poi.details}}
+                                            <br>
+                                            {{poi.reviews}}
+                                            <br>
+                                            # of Views: {{poi.views}}
+                                            <br>
+    
+                                        </section>
+                                    </div>
+    
+                                </section>
+                            </div>
+                        </section>
+    
+                        <section>
+                            <input type="button" value="Write A Review" ng-click="onWriteReviewClick(poi)"
+                                ng-show="isLoggedIn" />
+                             <input id="radio{{poi.name}}" type="radio" ng-show="isLoggedIn" ng-click="onFavoriteCheckBoxChange(poi)" ng-checked={{inFavorite(poi)}}> 
+      
+                            <!-- The Modal -->
+                            <div id="myReviewModal{{poi.name}}" class="modal">
+    
+                                <!-- Modal content -->
+                                <section style="color: black">
+                                    <div class="row">
+                                        <div class="modal-content">
+                                            <span ng-click="onReviewXClick(poi)" class="close">&times;</span>
+                                            <form name="ReviewForm" action="#" qn:validate="errors" novalidate>
+    
+                                                <input type="text" style="overflow: auto" rows="4" cols="50"
+                                                    ng-model="writtenReview" name="writtenReview"
+                                                    placeholder="Please consider writing a written review" />
+    
+                                                <input type="text" ng-model="stars" name="stars"
+                                                    placeholder="Choose a rating between 1-100"
+                                                    ng-pattern="/^[1-9][0-9]?$|^100$/" required />
+    
+                                                <span ng-show="ReviewForm.stars.$touched">
+                                                    <span ng-show="ReviewForm.stars.$error.pattern">Rating must be a
+                                                        number between 1-100 <br></span>
+                                                    <span ng-show="ReviewForm.stars.$error.required">A rating is
+                                                        required <br></span>
+                                                </span>
+                                                <input type="button" value="Submit Review" ng-disabled="ReviewForm.$invalid"
+                                                    ng-click="submitReview(poi)" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </ul>
+    </span>

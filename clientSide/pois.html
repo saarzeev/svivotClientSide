@@ -60,6 +60,8 @@
                                         {{sortedPOIs[sortedPOIs.indexOf(poi)].reviews}}
                                         <br>
                                         # of Views: {{sortedPOIs[sortedPOIs.indexOf(poi)].views}}
+                                        <br>
+
                                     </section>
                                 </div>
 
@@ -70,7 +72,8 @@
                     <section>
                         <input type="button" value="Write A Review" ng-click="onWriteReviewClick(poi)"
                             ng-show="isLoggedIn" />
-
+                         <input id="radio{{poi.name}}" type="radio" ng-show="isLoggedIn" ng-click="onFavoriteCheckBoxChange(poi)" ng-checked={{inFavorite(poi)}}> 
+  
                         <!-- The Modal -->
                         <div id="myReviewModal{{poi.name}}" class="modal">
 
