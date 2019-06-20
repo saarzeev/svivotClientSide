@@ -2,6 +2,14 @@ angular.module("myApp")
 
     .controller("favoriteController", ['$scope', '$http', '$window', '$rootScope', '$location', function ($scope, $http, $window, $rootScope, $location) {
       
+        $scope.checkLogin = function () {
+            if (!$rootScope.isLoggedIn) {
+                $location.url('/');
+                $rootScope.welcomePath = '#!/';
+                return;
+            }
+        }
+
         $scope.getAllFavorites = function(){
             $scope.favorites = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
        }

@@ -25,7 +25,7 @@
         <ul>
             <link rel="stylesheet" href="./assets/css/modal.css" />
     
-            <header class="special container" ng-init="getAllFavorites()">
+            <header class="special container" ng-init="checkLogin(); getAllFavorites();">
                 <br />
                 <span class="icon solid fa-chart-bar"></span>
                 <h2 ng-show="isLoggedIn && favorites.length > 0">These are <strong> your</strong> favorites </h2>
