@@ -54,7 +54,7 @@
                                     <section style="color: black">Category:
                                         {{sortedPOIs[sortedPOIs.indexOf(poi)].category}}
                                         <br>
-                                        Rank: {{sortedPOIs[sortedPOIs.indexOf(poi)].rank}} Out of 100
+                                        Rank: {{(sortedPOIs[sortedPOIs.indexOf(poi)].rank / 100 * 5).toFixed(1)}} Out of 5
                                         <br>
                                         Details: {{sortedPOIs[sortedPOIs.indexOf(poi)].details}}
                                         <br>
@@ -90,12 +90,12 @@
                                                 placeholder="Please consider writing a written review" />
 
                                             <input type="text" ng-model="stars" name="stars"
-                                                placeholder="Choose a rating between 1-100"
-                                                ng-pattern="/^[1-9][0-9]?$|^100$/" required />
+                                                placeholder="Choose a rating between 1-5"
+                                                ng-pattern="/^[1-5]$/" required />
 
                                             <span ng-show="ReviewForm.stars.$touched">
                                                 <span ng-show="ReviewForm.stars.$error.pattern">Rating must be a
-                                                    number between 1-100 <br></span>
+                                                    number between 1-5 <br></span>
                                                 <span ng-show="ReviewForm.stars.$error.required">A rating is
                                                     required <br></span>
                                             </span>

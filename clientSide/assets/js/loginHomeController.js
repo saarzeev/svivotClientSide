@@ -102,14 +102,14 @@ angular.module("myApp")
                 data = {
                     poiName: poi.name,
                     review: this.writtenReview,
-                    rank: parseInt(this.stars, 10),
+                    rank: (parseInt(this.stars, 10) / 5 * 100),
                     date: new Date()
                 };
             }
             else {
                 data = {
                     poiName: poi.name,
-                    rank: parseInt(this.stars, 10),
+                    rank: (parseInt(this.stars, 10) / 5 * 100),
                     date: new Date()
                 };
             }
