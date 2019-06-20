@@ -12,10 +12,10 @@ angular.module("myApp")
             const data = {favorites: JSON.parse($window.sessionStorage.getItem('userFavoritePoi'))};
             $http.post(url, data, headers)
             .then(() =>  alert("Successfully updated your favorites"))
-            .catch((errorResponse) => $scope.errorOnUdateFAvorites(errorResponse));
+            .catch((errorResponse) => $scope.errorOnUdateFavorites(errorResponse));
        }
 
-       $scope.errorOnUdateFAvorites = function(errorResponse){
+       $scope.errorOnUdateFavorites = function(errorResponse){
             alert("Well, This is embarrassing.\nWe were not able to update your favorites.\n" + errorResponse.data);
        }
 
