@@ -83,6 +83,8 @@
 </header>
 <section class="wrapper style1 container special">
     <div class="row" ng-init="showFavorites()">
+        <!-- <div ng-repeat="poi in (resultsArray = (sortedPOIs | searchByPOIName:searchString | searchByCategory:categories | sortByRank:rankFilter))" -->
+        <h3 ng-if="latestFavorites.length == 0">No favorites to show yet</h3>
         <div id="firstColumnFavorites" ng-repeat="poi in latestFavorites" class="col-6 col-12-narrower">
             <section>
                 <a ng-click="onModalClick(poi)" class="image featured modalPic"><img

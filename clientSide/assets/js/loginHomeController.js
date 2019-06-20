@@ -2,6 +2,7 @@ angular.module("myApp")
 
     .controller("loginHome", ['$scope', '$http', '$window', '$rootScope', '$location', function ($scope, $http, $window, $rootScope, $location) {
 
+        $scope.latestFavorites = [];
         // popular functions
         $scope.getUsersCategories = function () {
             if (!$rootScope.isLoggedIn) {
@@ -72,7 +73,7 @@ angular.module("myApp")
             if (favorites.length >= 2) {
                 $scope.latestFavorites = favorites.slice(0, 2);
             }
-            else {
+            else if(favorites.length == 1) {
                 document.getElementById("firstColumnFavorites").className = "col-12 col-12-narrower";
                 $scope.latestFavorites = favorites.slice(0, 1);
             }
