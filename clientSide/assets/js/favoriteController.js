@@ -15,7 +15,7 @@ angular.module("myApp")
             .catch((errorResponse) => $scope.errorOnUdateFAvorites(errorResponse));
        }
 
-       $scope.errorOnUdateFAvorites = function(){
+       $scope.errorOnUdateFAvorites = function(errorResponse){
             alert("Well, This is embarrassing.\nWe were not able to update your favorites.\n" + errorResponse.data);
        }
 
@@ -144,42 +144,13 @@ angular.module("myApp")
             }
             else{
                 newFavorite = angular.copy(poi);
-                newFavorite.date = $scope.createDate();
+                newFavorite.date = new Date();
                 favorites.push(newFavorite);
                 newFavorites = favorites;
                 document.getElementById("radio" + poi.name).checked = true;
                 $rootScope.numberOfFavorites++;
             }
             $window.sessionStorage.setItem('userFavoritePoi',JSON.stringify(newFavorites));
-        }
-
-        $scope.createDate = function() {
-            const today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1; 
-            const yyyy = today.getFullYear();
-            var HH = today.getHours();
-            var MM = today.getMinutes();
-            var SS = today.getSeconds();
-            var ampm = 'AM';
-        
-            if(dd < 10) {
-                dd ='0'+ dd;
-            } 
-            if(mm < 10) {
-                mm='0'+ mm;
-            }  
-            if(HH < 10) {
-                HH ='0'+ HH;
-            } 
-            if(MM < 10) {
-                MM ='0'+ MM;
-            } 
-            if(SS < 10) {
-                SS ='0'+ SS;
-            } 
-           
-            return `${yyyy}-${mm}-${dd}T${HH}:${MM}:${SS}Z`;
         }
 
     }]);
