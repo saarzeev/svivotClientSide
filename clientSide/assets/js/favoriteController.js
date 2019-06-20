@@ -9,10 +9,10 @@ angular.module("myApp")
        $scope.updateFavoriteDB = function(){
             const url = `${localUrl}/logged/updateFavoritePOI`;
             const headers = { headers: { "x-auth-token": $window.sessionStorage.token } };
-            const data = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
+            const data = {favorites: JSON.parse($window.sessionStorage.getItem('userFavoritePoi'))};
             $http.post(url, data, headers)
             .then(() =>  alert("Successfully updated your favorites"))
-            .catch(() => $scope.errorOnUdateFAvorites());
+            .catch((errorResponse) => $scope.errorOnUdateFAvorites(errorResponse));
        }
 
        $scope.errorOnUdateFAvorites = function(){
