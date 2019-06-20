@@ -44,7 +44,8 @@
                     <div ng-show="!isLoggedIn">
                             <h3>Please log in first </h3>
                     </div>
-                    <div ng-repeat="poi in favorites | searchByPOIName:searchString | searchByCategory:categories | sortByRank:rankFilter" class="col-4 col-12-narrower">
+                    
+                    <div ng-repeat="poi in (resultsArray = (favorites | searchByPOIName:searchString | searchByCategory:categories | sortByRank:rankFilter))" class="col-4 col-12-narrower">
                         <section>
                             <a ng-click="onModalClick(poi)" class="image featured modalPic"><img
                                     ng-src={{poi.img}} alt="" /></a>
@@ -117,6 +118,7 @@
                             </div>
                         </section>
                     </div>
+                    <h3 ng-if="resultsArray.length == 0"> No POIs to show </h3>
                 </div>
             </section>
         </ul>

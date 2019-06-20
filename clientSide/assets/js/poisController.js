@@ -2,7 +2,7 @@ angular.module("myApp")
 
     .controller("poisController", ['$scope', '$http', '$window', '$rootScope', '$location', function ($scope, $http, $window, $rootScope, $location) {
         $scope.favorites = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
-
+        $scope.resultsArray = [];
         $scope.getAllPOIs = function () {
             const url = `${localUrl}/getAllPOI`;
             $http.get(url).then($scope.successfulGet, $scope.errorOnGet);

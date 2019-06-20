@@ -35,12 +35,14 @@
 
         <section class="wrapper style1 container special">
             <div class="row" ng-init="getAllPOIs()">
-                <div ng-repeat="poi in sortedPOIs | searchByPOIName:searchString | searchByCategory:categories | sortByRank:rankFilter" class="col-4 col-12-narrower">
+                <div ng-repeat="poi in (resultsArray = (sortedPOIs | searchByPOIName:searchString | searchByCategory:categories | sortByRank:rankFilter))"
+                    class="col-4 col-12-narrower">
                     <section>
                         <a ng-click="onModalClick(poi)" class="image featured modalPic"><img
                                 ng-src={{sortedPOIs[sortedPOIs.indexOf(poi)].img}} alt="" /></a>
                         <header>
-                            <h3 ng-click="onModalClick(poi)" class="clickable">{{sortedPOIs[sortedPOIs.indexOf(poi)].name}}</h3>
+                            <h3 ng-click="onModalClick(poi)" class="clickable">
+                                {{sortedPOIs[sortedPOIs.indexOf(poi)].name}}</h3>
                         </header>
 
                         <!-- The Modal -->
@@ -54,7 +56,8 @@
                                     <section style="color: black">Category:
                                         {{sortedPOIs[sortedPOIs.indexOf(poi)].category}}
                                         <br>
-                                        Rank: {{(sortedPOIs[sortedPOIs.indexOf(poi)].rank / 100 * 5).toFixed(1)}} Out of 5
+                                        Rank: {{(sortedPOIs[sortedPOIs.indexOf(poi)].rank / 100 * 5).toFixed(1)}} Out of
+                                        5
                                         <br>
                                         Details: {{sortedPOIs[sortedPOIs.indexOf(poi)].details}}
                                         <br>
@@ -73,8 +76,9 @@
                     <section>
                         <input type="button" value="Write A Review" ng-click="onWriteReviewClick(poi)"
                             ng-show="isLoggedIn" />
-                         <input id="radio{{poi.name}}" type="radio" ng-show="isLoggedIn" ng-click="onFavoriteCheckBoxChange(poi)" ng-checked={{inFavorite(poi)}}> 
-  
+                        <input id="radio{{poi.name}}" type="radio" ng-show="isLoggedIn"
+                            ng-click="onFavoriteCheckBoxChange(poi)" ng-checked={{inFavorite(poi)}}>
+
                         <!-- The Modal -->
                         <div id="myReviewModal{{poi.name}}" class="modal">
 
@@ -90,8 +94,8 @@
                                                 placeholder="Please consider writing a written review" />
 
                                             <input type="text" ng-model="stars" name="stars"
-                                                placeholder="Choose a rating between 1-5"
-                                                ng-pattern="/^[1-5]$/" required />
+                                                placeholder="Choose a rating between 1-5" ng-pattern="/^[1-5]$/"
+                                                required />
 
                                             <span ng-show="ReviewForm.stars.$touched">
                                                 <span ng-show="ReviewForm.stars.$error.pattern">Rating must be a
@@ -108,6 +112,7 @@
                         </div>
                     </section>
                 </div>
+                <h3 ng-if="resultsArray.length == 0"> No POIs to show </h3>
             </div>
         </section>
     </ul>

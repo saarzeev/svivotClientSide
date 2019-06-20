@@ -1,7 +1,8 @@
 angular.module("myApp")
 
     .controller("favoriteController", ['$scope', '$http', '$window', '$rootScope', '$location', function ($scope, $http, $window, $rootScope, $location) {
-      
+        $scope.resultsArray = [];
+
         $scope.checkLogin = function () {
             if (!$rootScope.isLoggedIn) {
                 $location.url('/');
