@@ -1,7 +1,7 @@
 <!-- Initialize a new AngularJS app and associate it with a module named "instantSearch"-->
 <span>
         <link rel="stylesheet" href="./assets/css/searchbar.css" />
-        <div class="bar">
+        <div ng-show="isLoggedIn && favorites.length > 0" class="bar">
             <!-- Create a binding between the searchString model and the text field -->
             <input type="text" ng-model="searchString" placeholder="Search for POIs..." />
             Sort by rank...
@@ -24,19 +24,25 @@
         <ul>
             <link rel="stylesheet" href="./assets/css/modal.css" />
     
-            <header class="special container">
+            <header class="special container" ng-init="getAllFavorites()">
                 <br />
                 <span class="icon solid fa-chart-bar"></span>
-                <h2>heres <strong> your</strong> favorite </h2>
+                <h2 ng-show="isLoggedIn && favorites.length > 0">These are <strong> your</strong> favorites </h2>
                 <br>
-                <input type="button" value="save changes" ng-click="updateFavoriteDB()"
+                <input ng-show="isLoggedIn && favorites.length > 0" type="button" value="save changes" ng-click="updateFavoriteDB()"
                                 ng-show="isLoggedIn" />
                 <span ng-show="error">loading POIs error - {{errorValue.value}}</span>
                 <br />
             </header>
     
             <section class="wrapper style1 container special">
-                <div class="row" ng-init="getAllFavorites()">
+                <div class="row" >
+                    <div ng-show="favorites.length == 0 && isLoggedIn">
+                            <h3>Unfortunatley, you do not have any favorites yet...</h3>
+                    </div>
+                    <div ng-show="!isLoggedIn">
+                            <h3>Please log in first </h3>
+                    </div>
                     <div ng-repeat="poi in favorites | searchByPOIName:searchString | searchByCategory:categories | sortByRank:rankFilter" class="col-4 col-12-narrower">
                         <section>
                             <a ng-click="onModalClick(poi)" class="image featured modalPic"><img
