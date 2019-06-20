@@ -39,7 +39,7 @@
                         <a ng-click="onModalClick(poi)" class="image featured modalPic"><img
                                 ng-src={{sortedPOIs[sortedPOIs.indexOf(poi)].img}} alt="" /></a>
                         <header>
-                            <h3>{{sortedPOIs[sortedPOIs.indexOf(poi)].name}}</h3>
+                            <h3 ng-click="onModalClick(poi)" class="clickable">{{sortedPOIs[sortedPOIs.indexOf(poi)].name}}</h3>
                         </header>
 
                         <!-- The Modal -->
