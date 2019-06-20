@@ -27,7 +27,7 @@
                 <a ng-click="onModalClick($index)" class="image featured modalPic"><img
                         ng-src={{threeRandomPopularPOIs[$index].img}} alt="" /></a>
                 <header>
-                    <h3>{{threeRandomPopularPOIs[$index].name}}</h3>
+                    <h3 ng-click="onModalClick($index)" class="clickable">{{threeRandomPopularPOIs[$index].name}}</h3>
                 </header>
 
                 <!-- The Modal -->

@@ -42,7 +42,7 @@
                             <a ng-click="onModalClick(poi)" class="image featured modalPic"><img
                                     ng-src={{poi.img}} alt="" /></a>
                             <header>
-                                <h3>{{poi.name}}</h3>
+                                <h3 ng-click="onModalClick(poi)" class="clickable">{{poi.name}}</h3>
                             </header>
     
                             <!-- The Modal -->
