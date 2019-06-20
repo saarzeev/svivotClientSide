@@ -7,7 +7,16 @@ angular.module("myApp")
        }
 
        $scope.updateFavoriteDB = function(){
-//add hhtpp
+            const url = `${localUrl}/logged/updateFavoritePOI`;
+            const headers = { headers: { "x-auth-token": $window.sessionStorage.token } };
+            const data = JSON.parse($window.sessionStorage.getItem('userFavoritePoi'));
+            $http.post(url, data, headers)
+            .then(() =>  alert("Successfully updated your favorites"))
+            .catch(() => $scope.errorOnUdateFAvorites());
+       }
+
+       $scope.errorOnUdateFAvorites = function(){
+            alert("Well, This is embarrassing.\nWe were not able to update your favorites.\n" + errorResponse.data);
        }
 
         $scope.sortPOIs = function (pois) {

@@ -1,5 +1,5 @@
 <!-- Initialize a new AngularJS app and associate it with a module named "instantSearch"-->
-<span>
+<span ng-show="isLoggedIn">
         <link rel="stylesheet" href="./assets/css/searchbar.css" />
         <div ng-show="isLoggedIn && favorites.length > 0" class="bar">
             <!-- Create a binding between the searchString model and the text field -->
