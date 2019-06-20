@@ -38,7 +38,7 @@
     
             <section class="wrapper style1 container special">
                 <div class="row" >
-                    <div ng-show="favorites.length == 0 && isLoggedIn">
+                    <div ng-show="isLoggedIn && favorites.length == 0">
                             <h3>Unfortunatley, you do not have any favorites yet...</h3>
                     </div>
                     <div ng-show="!isLoggedIn">
